@@ -33,3 +33,8 @@ end
 # Also, must be placed outside :build to ensure it occurs prior to other
 # extensions below that are also triggered after build.
 activate :imageoptim
+
+activate :deploy do |deploy|
+  deploy.method = :git
+  deploy.branch = "gh-pages"
+end
