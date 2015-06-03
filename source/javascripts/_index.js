@@ -1,5 +1,5 @@
 $(function(){
-  $('textarea.yaml').change(function(){
+  var onYamlEvent = function(){
     var yaml = jsyaml.load($(this).val());
     var yaml_flat = JSON.flatten(yaml);
     var gengo = ""; // = JSON.stringify(yaml_flat, null, 2);
@@ -9,5 +9,9 @@ $(function(){
     }
 
     $('textarea.gengo').val(gengo);
-  });
+  };
+
+  $('textarea.yaml').keydown(onYamlEvent);
+  $('textarea.yaml').keyup(onYamlEvent);
+  $('textarea.yaml').change(onYamlEvent);
 })
