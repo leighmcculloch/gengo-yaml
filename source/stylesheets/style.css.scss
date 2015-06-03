@@ -30,18 +30,18 @@ body {
 }
 
 .content-converter {
-  textarea.yaml {
+  textarea {
     display:inline-block;
     width:49%;
     height:250px;
     outline:none;
-  }
+    font-family:'Inconsolata', monospace;
 
-  textarea.gengo {
-    display:inline-block;
-    width:49%;
-    height:250px;
-    outline:none;
+    &.yaml {
+    }
+
+    &.gengo {
+    }
   }
 }
 
