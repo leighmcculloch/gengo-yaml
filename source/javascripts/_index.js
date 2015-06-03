@@ -1,7 +1,13 @@
 $(function(){
   $('textarea.yaml').change(function(){
     var yaml = jsyaml.load($(this).val());
-    var json = JSON.stringify(yaml, null, 2);
-    $('textarea.gengo').val(json);
+    var yaml_flat = JSON.flatten(yaml);
+    var gengo = ""; // = JSON.stringify(yaml_flat, null, 2);
+    for (var key in yaml_flat) {
+      gengo += "[[[" + key + "]]]" + "\n";
+      gengo += yaml_flat[key] + "\n";
+    }
+
+    $('textarea.gengo').val(gengo);
   });
 })
