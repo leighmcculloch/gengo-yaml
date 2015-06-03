@@ -1,0 +1,73 @@
+/*
+ *= require _reset
+ */
+
+body {
+	margin:2em;
+  font-family:'Roboto', sans-serif;
+  color:#333;
+  line-height:1.3em;
+}
+
+.page {
+	margin:auto;
+}
+
+.content {
+	margin:0 auto;
+	text-align:center;
+}
+
+.content-item {
+	margin:1.55em 0;
+}
+
+.content-description {
+  a.gengo {
+    color:#3f8a5a;
+    font-weight:bold;
+  }
+}
+
+.content-converter {
+  textarea.yaml {
+    display:inline-block;
+    width:49%;
+    height:250px;
+    outline:none;
+  }
+
+  textarea.gengo {
+    display:inline-block;
+    width:49%;
+    height:250px;
+    outline:none;
+  }
+}
+
+.content-made-with-by {
+  font-size:0.8em;
+  color:#ccc;
+  a {
+    color:inherit;
+  }
+}
+
+h1 {
+	font-size:2.5em;
+	font-weight:900;
+}
+
+h2 {
+	font-size:1.3em;
+  font-weight:400;
+}
+
+a {
+	color:#00f;
+	text-decoration:none;
+}
+
+a:hover {
+	text-decoration:underline;
+}
