@@ -21,7 +21,7 @@ $(function(){
         value = ""
       }
       value = value.replace(/(%\{[a-z0-9_]+\})/ig, "[[[$1]]]")
-      value = value.replace(/<([A-Z][A-Z0-9]*)(\b[^>]*)>(.*?)<\/\1>/ig, "[[[<$1$2>$3</$1>]]]")
+      value = value.replace(/<([A-Z][A-Z0-9]*)(\b[^>]*)>(.*?)<\/\1>/ig, "[[[<$1$2>]]]$3[[[</$1>]]]")
       gengo += '[[[' + key + ']]]' + '\n';
       gengo += value + '\n';
     }
