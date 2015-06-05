@@ -4,7 +4,7 @@
 
 ## Usage
 
-1. Go to [leighmcculloch.github.com/gengo-yaml](https://leighmcculloch.github.com/gengo-yaml)
+1. Go to [leighmcculloch.github.io/gengo-yaml](https://leighmcculloch.github.io/gengo-yaml)
 2. Paste your i18n YAML into the left box
 3. Gengo friendly text will appear in the right box
 4. Click the `Translate with Gengo` button and you'll be redirected to Gengo with the text included in a translation order ready for you to configure the languages you want it translated to
