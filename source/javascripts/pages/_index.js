@@ -1,7 +1,7 @@
 var example = 
   'en:\n' +
   '  title: My Website\n' +
-  '  description: A %{type_of_website} website on the internet, made by me.\n';
+  '  description: A %{type_of_website} website on the internet, made by <a href="http://example.com">me</a>.\n'
 
 $(function(){
   var refreshYamlToGengo = function(){
@@ -17,7 +17,11 @@ $(function(){
     var gengo = '';
     for (var key in yaml_flat) {
       var value = yaml_flat[key];
-      value = value.replace(/(%\{[a-zA-Z0-9_]+\})/g, "[[[$1]]]")
+      if (value == null) {
+        value = ""
+      }
+      value = value.replace(/(%\{[a-z0-9_]+\})/ig, "[[[$1]]]")
+      value = value.replace(/<([A-Z][A-Z0-9]*)(\b[^>]*)>(.*?)<\/\1>/ig, "[[[<$1$2>$3</$1>]]]")
       gengo += '[[[' + key + ']]]' + '\n';
       gengo += value + '\n';
     }
