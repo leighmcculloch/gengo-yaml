@@ -1,7 +1,7 @@
 var example = 
   'en:\n' +
   '  title: My Website\n' +
-  '  description: A %{type_of_website} website on the internet, made by <a href="http://example.com">me</a>.\n'
+  '  description: A %{website_type} website, made by <a href="http://example.com">me</a>.\n'
 
 $(function(){
   var refreshYamlToGengo = function(){
