@@ -5,14 +5,20 @@ description: Convert i18n YAML files for Rails or whatever into Gengo friendly s
 
 .content
   .content-item.content-description
-    Convert your i18n YAML files, for Rails or whatever, into
-    %a.gengo{href:"https://gengo.com"} Gengo
-    friendly submissions and back again.
+    .nowrap
+      Convert your i18n YAML files, for Rails or whatever, into
+    .nowrap
+      %a.gengo{href:"https://gengo.com"} Gengo
+      friendly submissions and back again.
   .content-item.content-converter
-    %textarea.yaml
-    %textarea.gengo{disabled:"disabled"}
+    .convertee.yaml
+      %textarea
+    .convertee.gengo
+      %textarea{disabled:"disabled"}
+      .actions
+        %a.send-to-gengo.gengo.tip{href:"#", title:"Do it, click the button."} Translate with Gengo &raquo;
   .content-item.content-made-with-by
     Conversion back the other way coming soon.
-  .content-item.content-made-with-by
+    %br
     %a{href:"https://github.com/leighmcculloch/gengoyaml"}
       github.com/leighmcculloch/gengoyaml
