@@ -1,7 +1,7 @@
 var example = 
   'en:\n' +
   '  title: My Website\n' +
-  '  description: A boring website on the internet, made by me.\n';
+  '  description: A %{type_of_website} website on the internet, made by me.\n';
 
 $(function(){
   var refreshYamlToGengo = function(){
@@ -16,8 +16,10 @@ $(function(){
     var yaml_flat = JSON.flatten(yaml);
     var gengo = '';
     for (var key in yaml_flat) {
+      var value = yaml_flat[key];
+      value = value.replace(/(%\{[a-zA-Z0-9_]+\})/g, "[[[$1]]]")
       gengo += '[[[' + key + ']]]' + '\n';
-      gengo += yaml_flat[key] + '\n';
+      gengo += value + '\n';
     }
 
     $('.gengo textarea').val(gengo);
