@@ -1,117 +1,14 @@
 /*
- *= require _reset
+ *= require _bootstrap.min
  */
 
-$color-text:#333;
-$color-gengo:rgba(63,138,90,1.0);
-$color-gengo-lighter:rgba(63,138,90,0.5);
-
 body {
-	margin:2em;
-  font-family:'Roboto', sans-serif;
-  color:$color-text;
-  line-height:1.3em;
+	padding-top: 2rem;
+}
+#pageTitle {
+  margin-bottom: 2.25rem;
 }
 
-.page {
-	margin:auto;
-}
-
-.content {
-	margin:0 auto;
-	text-align:center;
-}
-
-.content-item {
-	margin:1.25em 0;
-}
-
-.content-converter {
-  .convertee {
-    display:inline-block;
-    position:relative;
-    width:49%;
-
-    textarea {
-      outline:none;
-      resize:none;
-      height:250px;
-      width:100%;
-      font-family:'Inconsolata', monospace;
-      border:1px solid $color-gengo-lighter;
-    }
-
-    &.yaml {
-      .actions {
-      }
-    }
-
-    &.gengo {
-      .actions {
-        position:absolute;
-        bottom:0;
-        right:0;
-        padding:2px 5px;
-        background-color:$color-gengo;
-        text-align:right;
-
-        .tooltipsy {
-            padding:10px;
-            max-width:200px;
-            color:#303030;
-            background-color:#f5f5b5;
-            border:1px solid #deca7e;
-        }
-
-        a.gengo {
-          font-size:0.8em;
-          color:#fff;
-        }
-      }
-    }
-  }
-}
-
-.content-submitter {
-  text-align:right;
-  form {
-    display:none;
-  }
-}
-
-.content-made-with-by {
-  font-size:0.8em;
-  color:#ccc;
-  a {
-    color:inherit;
-  }
-}
-
-.nowrap {
-  display:inline;
-  white-space:nowrap;
-}
-
-h1 {
-	font-size:2.5em;
-	font-weight:900;
-}
-
-h2 {
-	font-size:1.3em;
-  font-weight:400;
-}
-
-a {
-	color:#00f;
-	text-decoration:none;
-
-  &.gengo {
-    color:#3f8a5a;
-    font-weight:bold;
-  }
-}
-
-a:hover {
-	text-decoration:underline;
+#converter textarea {
+  min-height: 35rem;
 }

@@ -1,62 +1,53 @@
-var example = 
+/* globals YAML,Gengo */
+var example =
   'en:\n' +
   '  title: My Website\n' +
-  '  description: A %{website_type} website, made by <a href="http://example.com">me</a>.\n'
+  '  description: A %{website_type} website, made by <a href="http://example.com">me</a>.\n';
 
 $(function(){
-  var refreshYamlToGengo = function(){
-    var yaml;
-    try {
-      yaml = jsyaml.load($('.yaml textarea').val());
-    }
-    catch(err) {
-      console.log("Invalid YAML: " + err)
-      return;
-    }
-    var yaml_flat = JSON.flatten(yaml);
-    var gengo = '';
-    for (var key in yaml_flat) {
-      var value = yaml_flat[key];
-      if (value == null) {
-        value = ""
-      }
-      value = value.replace(/(%\{[a-z0-9_]+\})/ig, "[[[$1]]]")
-      value = value.replace(/<([A-Z][A-Z0-9]*)(\b[^>]*)\/>/ig, "[[[<$1$2/>]]]")
-      value = value.replace(/<([A-Z][A-Z0-9]*)(\b[^>]*)>(.*?)<\/\1>/ig, "[[[<$1$2>]]]$3[[[</$1>]]]")
-      gengo += '[[[' + key + ']]]' + '\n';
-      gengo += value + '\n';
-    }
+  var module = {
+    exampleObj: {'en': {'title': 'My Website', 'description': 'A %{website_type} website, made by <a href="http://example.com">me</a>.'}}
+    , yaml2gengo: function () {
+      var raw = $('#raw').val()
+      , parsed = YAML.parse(raw)
+      , gengo = Gengo.stringify(parsed);
 
-    $('.gengo textarea').val(gengo);
+      $('#converted').val(gengo);
+    }
+    , send2Gengo: function () {
+      var gengo = $('#converted').val();
+      var $form = $(
+        '<form action="https://gengo.com/order/receive_job_post/" name="translateForm" method="post" target="_blank">' +
+        '<input type="hidden" name="referrer" value="order">' +
+        '<input type="hidden" name="lc_src" value="en-US">' +
+        '<input type="hidden" name="body_src" value="' + gengo.replace(/"/g, '&quot;') + '">' +
+        '</form>'
+      );
+      $('body').append($form);
+      $form.submit();
+    }
+    , gengo2yaml: function () {
+      var raw = $('#raw').val()
+      , parsed = Gengo.parse(raw)
+      , yaml = YAML.stringify(parsed, 10, 2);
+
+      $('#converted').val(yaml);
+    }
+    , insertGengo: function () {
+      $('#raw').val(Gengo.stringify(module.exampleObj));
+      module.gengo2yaml();
+    }
+    , insertYAML: function () {
+      $('#raw').val(YAML.stringify(module.exampleObj, 4, 2));
+      module.yaml2gengo();
+    }
   };
 
-  var refreshInterval = setInterval(refreshYamlToGengo, 100);
-  $('.yaml textarea')
-  .keydown(refreshYamlToGengo)
-  .keyup(refreshYamlToGengo)
-  .change(refreshYamlToGengo)
-  .focus()
-  .typed({
-    strings: [example],
-    typeSpeed: -100,
-    contentType: 'text',
-    showCursor: false,
-    callback: function() {
-      clearInterval(refreshInterval);
-      refreshYamlToGengo();
-    }
-  });
+  $('#yaml2gengo').on('click', module.yaml2gengo);
+  $('#gengo2yaml').on('click', module.gengo2yaml);
+  $('#toGengo').on('click', module.send2Gengo);
+  $('#insertGengo').on('click', module.insertGengo);
+  $('#insertYAML').on('click', module.insertYAML);
 
-  $('.actions .send-to-gengo').click(function() {
-    var gengo = $('.gengo textarea').val();
-    var $form = $(
-      '<form action="https://gengo.com/order/receive_job_post/" name="translateForm" method="post" target="_blank">' +
-      '<input type="hidden" name="referrer" value="order">' +
-      '<input type="hidden" name="lc_src" value="en-US">' +
-      '<input type="hidden" name="body_src" value="' + gengo.replace(/"/g, '&quot;') + '">' +
-      '</form>'
-    );
-    $('body').append($form);
-    $form.submit();
-  });
+  module.insertYAML();
 });

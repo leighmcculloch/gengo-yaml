@@ -3,22 +3,33 @@ title: i18n YAML for Gengo Online
 description: Convert i18n YAML files for Rails or whatever into Gengo friendly submissions and back again.
 ---
 
-.content
-  .content-item.content-description
-    .nowrap
-      Convert your i18n YAML files, for Rails or whatever, into
-    .nowrap
-      %a.gengo{href:"https://gengo.com"} Gengo
-      friendly submissions and back again.
-  .content-item.content-converter
-    .convertee.yaml
-      %textarea
-    .convertee.gengo
-      %textarea{disabled:"disabled"}
-      .actions
-        %a.send-to-gengo.gengo.tip{href:"#", title:"Do it, click the button."} Translate with Gengo &raquo;
-  .content-item.content-made-with-by
-    Conversion back the other way coming soon.
-    %br
-    %a{href:"https://github.com/leighmcculloch/gengo-yaml"}
-      github.com/leighmcculloch/gengo-yaml
+.container
+  %h5#pageTitle.text-xs-center
+    Convert your i18n YAML files, for Rails or whatever, into
+    %a.gengo{ href:"https://gengo.com" } Gengo
+    friendly submissions and back again.
+
+  #converter
+    .text-xs-left
+      Examples:
+      %button#insertGengo.btn.btn-link Insert Gengo Text
+      %button#insertYAML.btn.btn-link Insert YAML Text
+    .card-deck-wrapper
+      .card-deck
+        .card.card-block
+          .form-group
+            %textarea#raw.form-control
+          .form-group
+            %button#yaml2gengo.btn.btn-primary Yaml 2 Gengo
+            %button#gengo2yaml.btn.btn-secondary Gengo 2 Yaml
+        .card.card-block
+          .form-group
+            %textarea#converted.form-control.disabled{ disabled:"disabled" }
+          .form-group.text-xs-left.text-md-right
+            %button#toCopy.btn.btn-secondary Copy to clipboard
+            %button#toGengo.btn.btn-primary{ title: "Do it, click the button" } Send to Gengo
+  .row
+    .col-xs-12.text-xs-center
+      %br
+      %a{href:"https://github.com/leighmcculloch/gengo-yaml"}
+        github.com/leighmcculloch/gengo-yaml

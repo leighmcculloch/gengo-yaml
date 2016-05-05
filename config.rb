@@ -19,6 +19,8 @@ configure :build do
   activate :relative_assets
 end
 
+activate :jasmine
+
 # Requires installing image_optim extensions.
 # Ref: https://github.com/toy/image_optim
 # 1) `brew install advancecomp gifsicle jhead jpegoptim jpeg optipng pngcrush`
@@ -30,6 +32,6 @@ activate :imageoptim
 
 activate :deploy do |deploy|
   deploy.method = :git
-  deploy.branch = "gh-pages"
+  deploy.branch = 'gh-pages'
   deploy.build_before = true
 end
