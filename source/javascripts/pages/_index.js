@@ -13,6 +13,7 @@ $(function(){
       , gengo = Gengo.stringify(parsed);
 
       $('#converted').val(gengo);
+      $('#toGengo').prop('disabled', false);
     }
     , send2Gengo: function () {
       var gengo = $('#converted').val();
@@ -32,6 +33,7 @@ $(function(){
       , yaml = YAML.stringify(parsed, 10, 2);
 
       $('#converted').val(yaml);
+      $('#toGengo').prop('disabled', true);
     }
     , insertGengo: function () {
       $('#raw').val(Gengo.stringify(module.exampleObj));
@@ -41,11 +43,39 @@ $(function(){
       $('#raw').val(YAML.stringify(module.exampleObj, 4, 2));
       module.yaml2gengo();
     }
+    , send2Clipboard: function (e) {
+      // find target element
+      var t = e.target
+      , c = t.dataset.copytarget
+      , inp = $(c);
+
+      // is element selectable?
+      if (inp && !!inp.select) {
+
+        // select text
+        inp.select();
+
+        try {
+          // copy text
+          document.execCommand('copy');
+          inp.blur();
+        }
+        catch (err) {
+          alert('please press Ctrl/Cmd+C to copy');
+        }
+
+      }
+    }
   };
+
+  if (!document.queryCommandSupported('copy') && !document.queryCommandEnabled('copy')) {
+    $('#toCopy').addClass('invisible');
+  }
 
   $('#yaml2gengo').on('click', module.yaml2gengo);
   $('#gengo2yaml').on('click', module.gengo2yaml);
   $('#toGengo').on('click', module.send2Gengo);
+  $('#toCopy').on('click', module.send2Clipboard);
   $('#insertGengo').on('click', module.insertGengo);
   $('#insertYAML').on('click', module.insertYAML);
 

@@ -24,9 +24,9 @@ description: Convert i18n YAML files for Rails or whatever into Gengo friendly s
             %button#gengo2yaml.btn.btn-secondary Gengo 2 Yaml
         .card.card-block
           .form-group
-            %textarea#converted.form-control.disabled{ disabled:"disabled" }
+            %textarea#converted.form-control.disabled{ readonly:"readonly" }
           .form-group.text-xs-left.text-md-right
-            %button#toCopy.btn.btn-secondary Copy to clipboard
+            %button#toCopy.btn.btn-secondary{'data-copytarget':"#converted"} Copy
             %button#toGengo.btn.btn-primary{ title: "Do it, click the button" } Send to Gengo
   .row
     .col-xs-12.text-xs-center
