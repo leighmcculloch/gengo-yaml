@@ -7,21 +7,23 @@ var example =
 $(function(){
   var module = {
     exampleObj: {'en': {'title': 'My Website', 'description': 'A %{website_type} website, made by <a href="http://example.com">me</a>.'}}
-    , yaml2gengo: function () {
+    , yaml2gengo: function (evt) {
       var raw = $('#raw').val()
       , parsed = YAML.parse(raw)
       , gengo = Gengo.stringify(parsed);
 
       $('#converted').val(gengo);
       $('#toGengo').prop('disabled', false);
-      ga('send', {
-        hitType: 'event',
-        eventCategory: 'CTA',
-        eventAction: 'click',
-        eventLabel: 'YAML => Gengo'
-      });
+      if (evt) {
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'CTA',
+          eventAction: 'click',
+          eventLabel: 'YAML => Gengo'
+        });
+      }
     }
-    , send2Gengo: function () {
+    , send2Gengo: function (evt) {
       var gengo = $('#converted').val();
       var $form = $(
         '<form action="https://gengo.com/order/receive_job_post/" name="translateForm" method="post" target="_blank">' +
@@ -33,14 +35,16 @@ $(function(){
       $('body').append($form);
       $form.submit();
 
-      ga('send', {
-        hitType: 'event',
-        eventCategory: 'CTA',
-        eventAction: 'click',
-        eventLabel: 'Send => Gengo'
-      });
+      if (evt) {
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'CTA',
+          eventAction: 'click',
+          eventLabel: 'Send => Gengo'
+        });
+      }
     }
-    , gengo2yaml: function () {
+    , gengo2yaml: function (evt) {
       var raw = $('#raw').val()
       , parsed = Gengo.parse(raw)
       , yaml = YAML.stringify(parsed, 10, 2);
@@ -48,12 +52,14 @@ $(function(){
       $('#converted').val(yaml);
       $('#toGengo').prop('disabled', true);
 
-      ga('send', {
-        hitType: 'event',
-        eventCategory: 'CTA',
-        eventAction: 'click',
-        eventLabel: 'Gengo => YAML'
-      });
+      if (evt) {
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'CTA',
+          eventAction: 'click',
+          eventLabel: 'Gengo => YAML'
+        });
+      }
     }
     , insertGengo: function () {
       $('#raw').val(Gengo.stringify(module.exampleObj));
@@ -85,12 +91,14 @@ $(function(){
         }
 
       }
-      ga('send', {
-        hitType: 'event',
-        eventCategory: 'CTA',
-        eventAction: 'click',
-        eventLabel: 'Copy to clipboard'
-      });
+      if (e) {
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'CTA',
+          eventAction: 'click',
+          eventLabel: 'Copy to clipboard'
+        });
+      }
     }
   };
 
