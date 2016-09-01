@@ -1,4 +1,4 @@
-/* globals YAML,Gengo */
+ /* globals YAML,Gengo,ga */
 var example =
   'en:\n' +
   '  title: My Website\n' +
@@ -14,6 +14,12 @@ $(function(){
 
       $('#converted').val(gengo);
       $('#toGengo').prop('disabled', false);
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'CTA',
+        eventAction: 'click',
+        eventLabel: 'YAML => Gengo'
+      });
     }
     , send2Gengo: function () {
       var gengo = $('#converted').val();
@@ -26,6 +32,13 @@ $(function(){
       );
       $('body').append($form);
       $form.submit();
+
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'CTA',
+        eventAction: 'click',
+        eventLabel: 'Send => Gengo'
+      });
     }
     , gengo2yaml: function () {
       var raw = $('#raw').val()
@@ -34,6 +47,13 @@ $(function(){
 
       $('#converted').val(yaml);
       $('#toGengo').prop('disabled', true);
+
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'CTA',
+        eventAction: 'click',
+        eventLabel: 'Gengo => YAML'
+      });
     }
     , insertGengo: function () {
       $('#raw').val(Gengo.stringify(module.exampleObj));
@@ -65,6 +85,12 @@ $(function(){
         }
 
       }
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'CTA',
+        eventAction: 'click',
+        eventLabel: 'Copy to clipboard'
+      });
     }
   };
 
