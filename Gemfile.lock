@@ -172,6 +172,12 @@ GEM
     in_threads (1.3.1)
     inflecto (0.0.2)
     ipaddress (0.8.0)
+    jasmine (2.0.3)
+      jasmine-core (~> 2.0.0)
+      phantomjs
+      rack (>= 1.2.1)
+      rake
+    jasmine-core (2.0.2)
     json (1.8.3)
     jwt (1.5.0)
     kramdown (1.7.0)
@@ -228,6 +234,9 @@ GEM
       image_optim (~> 0.20.2)
       image_optim_pack (~> 0.2.1)
       middleman-core (>= 3.1)
+    middleman-jasmine (0.5.1)
+      jasmine (~> 2.0.0)
+      middleman (~> 3.3.2)
     middleman-minify-html (3.4.0)
       htmlcompressor (~> 0.1.0)
       middleman-core (>= 3.2)
@@ -255,11 +264,13 @@ GEM
       tilt (~> 1.4.1)
     padrino-support (0.12.5)
       activesupport (>= 3.1)
+    phantomjs (2.1.1.0)
     progress (3.1.0)
     ptools (1.3.2)
     rack (1.6.1)
     rack-test (0.6.3)
       rack (>= 1.0)
+    rake (11.1.2)
     rb-fsevent (0.9.5)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
@@ -301,4 +312,8 @@ DEPENDENCIES
   middleman-deploy
   middleman-favicon-maker
   middleman-imageoptim
+  middleman-jasmine
   middleman-minify-html
+
+BUNDLED WITH
+   1.12.1
